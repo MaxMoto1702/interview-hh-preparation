@@ -3,7 +3,7 @@
 <suite name="Suite">
     <test name="Test">
         <classes>
-            <class name="com.rstyle.maxmoto1702.Test"/>
+            <class name="com.rstyle.maxmoto1702.SimpleTest"/>
         </classes>
     </test>
 </suite>

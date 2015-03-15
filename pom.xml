@@ -3,19 +3,10 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <name>Preparation to interview in HeadHunter</name>
     <groupId>com.rstyle.maxmoto1702</groupId>
     <artifactId>preparation-to-interview-in-headhunter</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <compiler.version>1.7</compiler.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <test.suite>src/test/resources/testng.xml</test.suite>
-    </properties>
-
-    <name>Preparation to interview in HeadHunter</name>
-
     <developers>
         <developer>
             <id>maksim.serebryanskiy</id>
@@ -24,16 +15,32 @@
             <organization>R-Style Soft</organization>
         </developer>
     </developers>
-
+    <properties>
+        <compiler.version>1.7</compiler.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure.version>1.4.10</allure.version>
+        <aspectj.version>1.8.3</aspectj.version>
+    </properties>
     <dependencies>
+        <!--Yandex-->
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-junit-adaptor</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
         <!--Logger-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.1</version>
         </dependency>
+        <!--JUnit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
     </dependencies>
-
     <build>
         <resources>
             <resource>
@@ -41,7 +48,6 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -70,11 +76,34 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.16</version>
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${test.suite}</suiteXmlFile>
-                    </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                    </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
+                        </property>
+                    </properties>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>2.0</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
