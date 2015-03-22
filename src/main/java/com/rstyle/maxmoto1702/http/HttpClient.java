@@ -45,14 +45,9 @@ public class HttpClient {
             FileOutputStream fileOutputStream = new FileOutputStream(args[1]);
 
             String response = "";
-            readBytes = 1;
-            while(readBytes > 0)
-            {
-                readBytes = inputStream.read(buffer);
-                if(readBytes > 0)
-//                    response += new String(buffer, 0, readBytes);
-                    fileOutputStream.write(buffer, 0, readBytes);
-            }
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            response = bufferedReader.readLine();
+
             LOG.info("Response: " + response);
             fileOutputStream.close();
             clientSocket.close();

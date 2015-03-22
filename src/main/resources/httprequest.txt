@@ -1,9 +1,5 @@
-GET / HTTP/1.1
-Host: ya.ru
-Connection: keep-alive
-Cache-Control: max-age=0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
-Accept-Encoding: gzip, deflate, sdch
-Accept-Language: ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4,uk;q=0.2
-
+GET /me HTTP/1.1
+User-Agent: MyApp/1.0 (my-app-feedback@example.com)
+Host: api.hh.ru
+Accept: */*
+Authorization: Bearer NGKKSEH0RSSUH8PNKTR71O856TETM5R81B7V8M68LO3V1ADA76IC9FSKQVTRR3VQ
