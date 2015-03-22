@@ -1,6 +1,5 @@
 package com.rstyle.maxmoto1702;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -10,12 +9,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SimpleTest {
 
-    @Test
+    //    @Test
     public void testMethod() {
         assertThat(new Main().method(), is(0));
     }
 
-    @Test
+    //    @Test
     public void testMethod2() {
         WebDriver driver = new PhantomJSDriver();
         driver.get("https://m.hh.ru/oauth/authorize?response_type=code&client_id=SRP5CUGB7ICSDHSGD74KAMV84HKLD934B401MBAPHKFCDU7P4UI6LSJBAIVPF5TP");
