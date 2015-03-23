@@ -20,7 +20,7 @@ public class HttpRequest {
         connection.setRequestProperty("Host", "api.hh.ru");
         connection.setRequestProperty("Accept", "*/*");
         connection.setRequestProperty("User-Agent", "Test/1.0 (test@test.ru)");
-        connection.setRequestProperty("Authorization", "Bearer N5KGR3F2LK6IG7FJAF256DTFERJRVVADBADK2BSH98TKPDJ3NQG46Q19E0GHDUVE");
+        connection.setRequestProperty("Authorization", "Bearer PTMC0H7O9KTIU9UD95BGAGOJGGGIKKL355N8T2EOS8M1FKNM6R4TV4IQUPQIAEDB");
 
         InputStream is = connection.getInputStream();
         BufferedReader rd = new BufferedReader(new InputStreamReader(is));
@@ -48,7 +48,7 @@ public class HttpRequest {
         connection.setRequestProperty("Host", "api.hh.ru");
         connection.setRequestProperty("Accept", "*/*");
         connection.setRequestProperty("User-Agent", "Test/1.0 (test@test.ru)");
-        connection.setRequestProperty("Authorization", "Bearer N5KGR3F2LK6IG7FJAF256DTFERJRVVADBADK2BSH98TKPDJ3NQG46Q19E0GHDUVE");
+        connection.setRequestProperty("Authorization", "Bearer PTMC0H7O9KTIU9UD95BGAGOJGGGIKKL355N8T2EOS8M1FKNM6R4TV4IQUPQIAEDB");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setRequestProperty("Content-Length", "" + parameters.getBytes("UTF-8").length);
         connection.setDoOutput(true);
@@ -78,7 +78,7 @@ public class HttpRequest {
         connection.setRequestProperty("Host", "api.hh.ru");
         connection.setRequestProperty("Accept", "*/*");
         connection.setRequestProperty("User-Agent", "Test/1.0 (test@test.ru)");
-        connection.setRequestProperty("Authorization", "Bearer N5KGR3F2LK6IG7FJAF256DTFERJRVVADBADK2BSH98TKPDJ3NQG46Q19E0GHDUVE");
+        connection.setRequestProperty("Authorization", "Bearer PTMC0H7O9KTIU9UD95BGAGOJGGGIKKL355N8T2EOS8M1FKNM6R4TV4IQUPQIAEDB");
 
         is = connection.getInputStream();
         rd = new BufferedReader(new InputStreamReader(is));
@@ -104,7 +104,7 @@ public class HttpRequest {
         connection.setRequestProperty("Host", "api.hh.ru");
         connection.setRequestProperty("Accept", "*/*");
         connection.setRequestProperty("User-Agent", "Test/1.0 (test@test.ru)");
-        connection.setRequestProperty("Authorization", "Bearer N5KGR3F2LK6IG7FJAF256DTFERJRVVADBADK2BSH98TKPDJ3NQG46Q19E0GHDUVE");
+        connection.setRequestProperty("Authorization", "Bearer PTMC0H7O9KTIU9UD95BGAGOJGGGIKKL355N8T2EOS8M1FKNM6R4TV4IQUPQIAEDB");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setRequestProperty("Content-Length", "" + parameters.getBytes("UTF-8").length);
         connection.setDoOutput(true);
@@ -124,5 +124,32 @@ public class HttpRequest {
 
         System.out.println("r4 " + response);
 
+
+        parameters = "last_name=Иванов&first_name=Иван&middle_name=Иванович-" + (char) new Random().nextInt() + new Random().nextInt() + "&is_in_search=true" + (char) new Random().nextInt() + new Random().nextInt();
+
+        connection = (HttpURLConnection) new URL("https://api.hh.ru/me").openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Host", "api.hh.ru");
+        connection.setRequestProperty("Accept", "*/*");
+        connection.setRequestProperty("User-Agent", "Test/1.0 (test@test.ru)");
+        connection.setRequestProperty("Authorization", "Bearer PTMC0H7O9KTIU9UD95BGAGOJGGGIKKL355N8T2EOS8M1FKNM6R4TV4IQUPQIAEDB");
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Content-Length", "" + parameters.getBytes("UTF-8").length);
+        connection.setDoOutput(true);
+
+        try (OutputStream output = connection.getOutputStream()) {
+            output.write(parameters.getBytes("UTF-8"));
+        }
+
+        is = connection.getInputStream();
+        rd = new BufferedReader(new InputStreamReader(is));
+        response = new StringBuffer();
+        while ((line = rd.readLine()) != null) {
+            response.append(line);
+            response.append('\n');
+        }
+        rd.close();
+
+        System.out.println("r4 " + response);
     }
 }
